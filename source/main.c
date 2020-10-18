@@ -15,25 +15,40 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
     DDRA = 0x00;PORTA = 0xFF;
-    DDRB = 0xFF;PORTB = 0x00;
+    DDRC = 0xFF;PORTC = 0x00;
     
-    unsigned char garageDoorSensor = 0;
-    unsigned char lightSensor = 0;
-    unsigned char ledOutput =0;
+    unsigned char cntavail = 0;
+    unsigned char parkingSpot = 0;
 
     /* Insert your solution below */
     while (1) {
-        garageDoorSensor = PINA & 0x01; //setting to PA0
-        lightSensor = PINA & 0x02; //setting to PA1
-        
-        if(garageDoorSensor && !lightSensor){
-            ledOutput = 0x01;
+        parkingSpot = PINA & 0x0F; //setting to PA3 down to PA0
+        cntavail = 0;
+        if((parkingSpot & 0x01) == 0x01){
+            cntavail = cntavail +1;
         }
         else{
-            ledOutput = 0x00;
+            cntavail = cntavail;
         }
-        PORTB = ledOutput;
-
+        if((parkingSpot & 0x02) == 0x02){
+            cntavail = cntavail +1;
+        }
+        else{
+            cntavail = cntavail;
+        }
+        if((parkingSpot & 0x04) == 0x04){
+            cntavail = cntavail +1;
+        }
+        else{
+            cntavail = cntavail;
+        }
+        if((parkingSpot & 0x08) == 0x08){
+            cntavail = cntavail +1;
+        }
+        else{
+            cntavail = cntavail;
+        }
+        PORTC = cntavail;
     }
     return 1;
 }

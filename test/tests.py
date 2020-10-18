@@ -14,26 +14,38 @@
 # An example set of tests is shown below. It is important to note that these tests are not "unit tests" in 
 # that they are not ran in isolation but in the order shown and the state of the device is not reset or 
 # altered in between executions (unless preconditions are used).
-tests = [ {'description': 'Setting PINA to 0x00',
-    'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 3 } ],
-    'expected': [('PORTB',0x00)],
+tests = [ {'description': 'Setting PINA to 0x0F',
+    'steps': [ {'inputs': [('PINA',0x0F)], 'iterations': 1 } ],
+    'expected': [('PORTC',0x04)],
     },
-    {'description': 'Setting PINA to 0x01.',
-    'steps': [ {'inputs': [('PINA',0x01)], 'iterations': 3 } ],
-    'expected': [('PORTB',0x01)],
+    {'description': 'Setting PINA to 0x00.',
+    'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 1 } ],
+    'expected': [('PORTC',0x00)],
     },
-    {'description': 'Setting PINA to 0x02',
-    'steps': [ {'inputs': [('PINA',0x02)], 'iterations': 3 } ],
-    'expected': [('PORTB',0x00)],
+    {'description': 'Setting PINA to 0x01',
+    'steps': [ {'inputs': [('PINA',0x01)], 'iterations': 1 } ],
+    'expected': [('PORTC',0x01)],
     },
-    {'description': 'Setting PINA to 0x03.',
-    'steps': [ {'inputs': [('PINA',0x03)], 'iterations': 3 } ],
-    'expected': [('PORTB',0x00)],
+    {'description': 'Setting PINA to 0x02.',
+    'steps': [ {'inputs': [('PINA',0x02)], 'iterations': 1 } ],
+    'expected': [('PORTC',0x01)],
+    },
+    {'description': 'Setting PINA to 0x04.',
+    'steps': [ {'inputs': [('PINA',0x04)], 'iterations': 1 } ],
+    'expected': [('PORTC',0x01)],
+    },
+    {'description': 'Setting PINA to 0x08.',
+    'steps': [ {'inputs': [('PINA',0x08)], 'iterations': 1 } ],
+    'expected': [('PORTC',0x01)],
+    },
+    {'description': 'Setting PINA to 0x0A.',
+    'steps': [ {'inputs': [('PINA',0x0A)], 'iterations': 1 } ],
+    'expected': [('PORTC',0x02)],
     },
     ]
 
 # Optionally you can add a set of "watch" variables these need to be global or static and may need
 # to be scoped at the function level (for static variables) if there are naming conflicts. The 
 # variables listed here will display everytime you hit (and stop at) a breakpoint
-watch = ['main::garageDoorSensor','main::lightSensor','main::ledOutput','PORTA','PORTB']
+watch = ['main::parkingSpot','main::cntavail','PORTA','PORTC']
 
