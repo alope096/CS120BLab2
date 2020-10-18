@@ -14,42 +14,29 @@
 # An example set of tests is shown below. It is important to note that these tests are not "unit tests" in 
 # that they are not ran in isolation but in the order shown and the state of the device is not reset or 
 # altered in between executions (unless preconditions are used).
-tests = [ {'description': 'Setting PINA to 0, PINB to 0 , PINC to 0',
-    'steps': [ {'inputs': [('PINA',0)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINB',0)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINC',0)], 'iterations': 3 } ],
-    'expected': [('PORTD',0)],
+tests = [ {'description': 'Setting PINA to 64, PINB to 64 , PINC to 64',
+    'steps': [ {'inputs': [('PINA',64)], 'iterations': 1 },
+               {'inputs': [('PINB',64)], 'iterations': 1 },
+               {'inputs': [('PINC',64)], 'iterations': 1 } ],
+    'expected': [('PORTD',0x31)],
     },
-    {'description': 'Setting PINA to 80, PINB to 50 , PINC to 80',
-    'steps': [ {'inputs': [('PINA',80)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINB',50)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINC',80)], 'iterations': 3 } ],
-    'expected': [('PORTD',69)],
+    {'description': 'Setting PINA to 0, PINB to 35 , PINC to 85',
+    'steps': [ {'inputs': [('PINA',0)], 'iterations': 1 },
+               {'inputs': [('PINB',35)], 'iterations': 1 },
+               {'inputs': [('PINC',85)], 'iterations': 1 } ],
+    'expected': [('PORTD',0x1E)],
     },
-    {'description': 'Setting PINA to 161, PINB to 15 , PINC to 80',
-    'steps': [ {'inputs': [('PINA',161)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINB',15)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINC',87)], 'iterations': 3 } ],
-    'expected': [('PORTD',87)],
+    {'description': 'Setting PINA to 85, PINB to 56 , PINC to 0',
+    'steps': [ {'inputs': [('PINA',0)], 'iterations': 1 },
+               {'inputs': [('PINB',56)], 'iterations': 1 },
+               {'inputs': [('PINC',85)], 'iterations': 1 } ],
+    'expected': [('PORTD',0x22)],
     },
-    {'description': 'Setting PINA to 80, PINB to 15 , PINC to 161',
-    'steps': [ {'inputs': [('PINA',80)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINB',15)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINC',80)], 'iterations': 3 } ],
-    'expected': [('PORTD',87)],
-    },
-    {'description': 'Setting PINA to 0, PINB to 10 , PINC to 90',
-    'steps': [ {'inputs': [('PINA',0)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINB',10)], 'iterations': 3 } ],
-    'steps': [ {'inputs': [('PINC',90)], 'iterations': 3 } ],
-    'expected': [('PORTD',34)],
-    },
-  
   
     ]
 
 # Optionally you can add a set of "watch" variables these need to be global or static and may need
 # to be scoped at the function level (for static variables) if there are naming conflicts. The 
 # variables listed here will display everytime you hit (and stop at) a breakpoint
-watch = ['main::seatA','main::seatB', 'main::seatC','main::totalweight','main::average','main::weight','PORTA','PORTB','PORTC','PORTD']
+watch = ['main::seatA','main::seatB', 'main::seatC','main::totalweight','main::average','main::weight','PORTA','PORTB','PORTC','PORTD', 'PINA', 'PINB', 'PINC']
 

@@ -27,18 +27,18 @@ int main(void) {
     int average = 0;
     /* Insert your solution below */
     while (1) {
-        seatA = PINA & 0xFF;
-        seatB = PINB & 0xFF;
-        seatC = PINC & 0xFF;
+        seatA = PINA;
+        seatB = PINB;
+        seatC = PINC;
         
         totalweight = seatA + seatB + seatC;
-        average = totalweight/3;
+        average = totalweight/4;
         weight = average & 0xFC;
 
         if (totalweight > 140){
             weight = weight + 0x01;
         }
-        if( ((seatA - seatB) > 80) || ((seatC - seatA) > 80)){
+        if( ((seatA - seatC) > 80) || ((seatC - seatA) > 80)){
             weight = weight + 0x02;
         }
     PORTD = weight; 
